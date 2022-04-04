@@ -1,0 +1,27 @@
+substitutions:
+  name: total-count
+  external_components_source: github://syssi/esphome-total-count@main
+
+esphome:
+  name: ${name}
+  platform: ESP32
+  board: esp-wrover-kit
+
+external_components:
+  - source: ${external_components_source}
+    refresh: 0s
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO32
+    name: "${name} light barrier"
+    id: barrier
+    filters:
+      - delayed_on: 20ms
+
+sensor:
+  - platform: total_count
+    name: "${name} total count"
+    binary_sensor_id: barrier
+    restore: true
+    min_save_interval: 300s
