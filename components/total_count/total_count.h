@@ -15,6 +15,7 @@ class TotalCount : public sensor::Sensor, public Component {
   void set_min_save_interval(uint32_t min_interval) { this->min_save_interval_ = min_interval; }
   void set_parent(binary_sensor::BinarySensor *parent) { parent_ = parent; }
   void set_initial_value(uint32_t initial_value) { initial_value_ = initial_value; }
+  void set_step(uint32_t step) { step_ = step; }
   void setup() override;
   void dump_config() override;
   float get_setup_priority() const override { return setup_priority::DATA; }
@@ -27,6 +28,7 @@ class TotalCount : public sensor::Sensor, public Component {
   ESPPreferenceObject pref_;
   binary_sensor::BinarySensor *parent_;
   uint32_t initial_value_{0};
+  uint32_t step_{1};
   uint32_t last_update_{0};
   uint32_t last_save_{0};
   uint32_t min_save_interval_{0};
