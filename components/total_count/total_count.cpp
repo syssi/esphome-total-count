@@ -39,7 +39,7 @@ void TotalCount::process_new_state_(bool state) {
     return;
 
   if (state) {
-    this->total_count_++;
+    this->total_count_ = this->total_count_ + this->step_;
     this->last_update_ = millis();
     this->publish_state_and_save(this->total_count_);
   }
