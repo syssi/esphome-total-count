@@ -11,6 +11,14 @@ external_components:
   - source: ${external_components_source}
     refresh: 0s
 
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+ota:
+logger:
+
 binary_sensor:
   - platform: gpio
     pin: GPIO32
@@ -25,3 +33,4 @@ sensor:
     binary_sensor_id: barrier
     restore: true
     min_save_interval: 300s
+    initial_value: 1000
