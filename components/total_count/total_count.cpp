@@ -7,7 +7,7 @@ namespace total_count {
 static const char *const TAG = "total_count";
 
 void TotalCount::setup() {
-  uint32_t initial_value = 0;
+  uint32_t initial_value = this->initial_value_;
 
   if (this->restore_) {
     this->pref_ = global_preferences->make_preference<float>(this->get_object_id_hash());
