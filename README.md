@@ -10,6 +10,10 @@ The total count sensor allows you to count the number of state changes of a bina
 
 ```
 # Example configuration entry
+
+external_components:
+  - source: github://syssi/esphome-total-count@main
+
 sensor:
   - platform: total_count
     name: "Total count"
@@ -27,7 +31,7 @@ sensor:
 - **min_save_interval** (*Optional*, `config-time`): The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to ``0s``.
 - **initial_value** (*Optional*, float): The value to set the state to on setup if not
   restored with ``restore_value``.
-- All other options from :ref:`Sensor <config-sensor>`.
+- All other options from `Sensor`.
 
 ## References
 
