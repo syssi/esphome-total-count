@@ -18,7 +18,7 @@ class TotalCount : public sensor::Sensor, public Component {
   void set_step(uint32_t step) { step_ = step; }
   void setup() override;
   void dump_config() override;
-  float get_setup_priority() const override { return setup_priority::DATA; }
+  float get_setup_priority() const override { return setup_priority::PROCESSOR; }
 
   void publish_state_and_save(uint32_t state);
 
