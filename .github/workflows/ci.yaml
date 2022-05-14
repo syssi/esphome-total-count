@@ -162,6 +162,7 @@ jobs:
         run: 'echo -e "wifi_ssid: ssid\nwifi_password: password\nmqtt_host: host\nmqtt_username: username\nmqtt_password: password" > secrets.yaml'
       - run: |
           esphome -s external_components_source components config esp32-example.yaml
+          esphome -s external_components_source components config esp32-example-advanced.yaml
 
   esphome-compile:
     runs-on: ubuntu-latest
@@ -200,3 +201,4 @@ jobs:
         run: 'echo -e "wifi_ssid: ssid\nwifi_password: password\nmqtt_host: host\nmqtt_username: username\nmqtt_password: password" > secrets.yaml'
       - run: |
           esphome -s external_components_source components compile esp32-example.yaml
+          esphome -s external_components_source components compile esp32-example-advanced.yaml
