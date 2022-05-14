@@ -1,48 +1,35 @@
 import esphome.codegen as cg
-from esphome.components import binary_sensor, sensor
+from esphome.components import sensor
 import esphome.config_validation as cv
-from esphome.const import (
-    CONF_INITIAL_VALUE,
-    CONF_RESTORE,
-    CONF_STEP,
-    STATE_CLASS_TOTAL_INCREASING,
-)
+from esphome.const import STATE_CLASS_TOTAL_INCREASING, UNIT_EMPTY
 
-CONF_BINARY_SENSOR_ID = "binary_sensor_id"
-CONF_MIN_SAVE_INTERVAL = "min_save_interval"
+from . import CONF_TOTAL_COUNT_ID, TotalCount
 
-total_count_ns = cg.esphome_ns.namespace("total_count")
+CONF_TOTAL_COUNT = "total_count"
 
-TotalCount = total_count_ns.class_("TotalCount", sensor.Sensor, cg.Component)
+ICON_TOTAL_COUNT = "mdi:counter"
 
+SENSORS = [
+    CONF_TOTAL_COUNT,
+]
 
-CONFIG_SCHEMA = (
-    sensor.sensor_schema(
-        TotalCount,
-        state_class=STATE_CLASS_TOTAL_INCREASING,
-    )
-    .extend(
-        {
-            cv.Required(CONF_BINARY_SENSOR_ID): cv.use_id(binary_sensor.BinarySensor),
-            cv.Optional(CONF_INITIAL_VALUE, default=0): cv.positive_int,
-            cv.Optional(CONF_STEP, default=1): cv.positive_int,
-            cv.Optional(CONF_RESTORE, default=True): cv.boolean,
-            cv.Optional(
-                CONF_MIN_SAVE_INTERVAL, default="0s"
-            ): cv.positive_time_period_milliseconds,
-        }
-    )
-    .extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
+        cv.Required(CONF_TOTAL_COUNT): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            icon=ICON_TOTAL_COUNT,
+            accuracy_decimals=0,
+            state_class=STATE_CLASS_TOTAL_INCREASING,
+        ),
+    }
 )
 
 
 async def to_code(config):
-    var = await sensor.new_sensor(config)
-    await cg.register_component(var, config)
-
-    sens = await cg.get_variable(config[CONF_BINARY_SENSOR_ID])
-    cg.add(var.set_parent(sens))
-    cg.add(var.set_restore(config[CONF_RESTORE]))
-    cg.add(var.set_min_save_interval(config[CONF_MIN_SAVE_INTERVAL]))
-    cg.add(var.set_initial_value(config[CONF_INITIAL_VALUE]))
-    cg.add(var.set_step(config[CONF_STEP]))
+    hub = await cg.get_variable(config[CONF_TOTAL_COUNT_ID])
+    for key in SENSORS:
+        if key in config:
+            conf = config[key]
+            sens = await sensor.new_sensor(conf)
+            cg.add(getattr(hub, f"set_{key}_sensor")(sens))
