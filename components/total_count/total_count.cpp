@@ -41,13 +41,9 @@ void TotalCount::publish_state_and_save(uint32_t state) {
   }
 }
 
-void TotalCount::reset_counter() {
-  this->publish_state_and_save(this->initial_value_);
-}
+void TotalCount::reset_counter() { this->publish_state_and_save(this->initial_value_); }
 
-void TotalCount::set_value(float value) {
-  this->publish_state_and_save((uint32_t) value);
-}
+void TotalCount::set_value(float value) { this->publish_state_and_save((uint32_t) value); }
 
 void TotalCount::process_new_state_(bool state) {
   if (std::isnan(state))
