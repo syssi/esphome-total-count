@@ -11,12 +11,6 @@ CODEOWNERS = ["@syssi"]
 
 CONF_RESET_COUNTER = "reset_counter"
 
-ICON_RESET_COUNTER = "mdi:keyboard-tab-reverse"
-
-BUTTONS = [
-    CONF_RESET_COUNTER,
-]
-
 TotalCountButton = total_count_ns.class_(
     "TotalCountButton", button.Button, cg.Component
 )
@@ -27,7 +21,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_RESET_COUNTER): button.BUTTON_SCHEMA.extend(
             {
                 cv.GenerateID(): cv.declare_id(TotalCountButton),
-                cv.Optional(CONF_ICON, default=ICON_RESET_COUNTER): cv.icon,
+                cv.Optional(CONF_ICON, default="mdi:keyboard-tab-reverse"): cv.icon,
             }
         ).extend(cv.COMPONENT_SCHEMA),
     }
@@ -36,7 +30,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_TOTAL_COUNT_ID])
-    for key in BUTTONS:
+    for key in [CONF_RESET_COUNTER]:
         if key in config:
             conf = config[key]
             var = cg.new_Pvariable(conf[CONF_ID])

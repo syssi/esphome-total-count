@@ -21,13 +21,7 @@ DEPENDENCIES = ["total_count"]
 
 CODEOWNERS = ["@syssi"]
 
-DEFAULT_STEP = 1
-
 CONF_TOTAL_COUNT = "total_count"
-
-NUMBERS = [
-    CONF_TOTAL_COUNT,
-]
 
 TotalCountNumber = total_count_ns.class_(
     "TotalCountNumber", number.Number, cg.Component
@@ -40,7 +34,7 @@ CONFIG_SCHEMA = cv.Schema(
             {
                 cv.GenerateID(): cv.declare_id(TotalCountNumber),
                 cv.Optional(CONF_ICON, default=ICON_EMPTY): number.icon,
-                cv.Optional(CONF_STEP, default=DEFAULT_STEP): cv.float_,
+                cv.Optional(CONF_STEP, default=1): cv.float_,
                 cv.Optional(
                     CONF_UNIT_OF_MEASUREMENT, default=UNIT_EMPTY
                 ): cv.string_strict,
@@ -60,7 +54,7 @@ CONFIG_SCHEMA = cv.Schema(
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_TOTAL_COUNT_ID])
-    for key in NUMBERS:
+    for key in [CONF_TOTAL_COUNT]:
         if key in config:
             conf = config[key]
             var = cg.new_Pvariable(conf[CONF_ID])
