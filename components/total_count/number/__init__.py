@@ -33,7 +33,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.Optional(CONF_TOTAL_COUNT): number.NUMBER_SCHEMA.extend(
             {
                 cv.GenerateID(): cv.declare_id(TotalCountNumber),
-                cv.Optional(CONF_ICON, default=ICON_EMPTY): number.icon,
+                cv.Optional(CONF_ICON, default=ICON_EMPTY): cv.icon,
                 cv.Optional(CONF_STEP, default=1): cv.float_,
                 cv.Optional(
                     CONF_UNIT_OF_MEASUREMENT, default=UNIT_EMPTY
