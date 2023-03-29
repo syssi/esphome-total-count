@@ -3,10 +3,9 @@ from esphome.components import binary_sensor
 import esphome.config_validation as cv
 from esphome.const import CONF_ID, CONF_INITIAL_VALUE, CONF_RESTORE, CONF_STEP
 
-AUTO_LOAD = ["binary_sensor", "button", "sensor", "number"]
-
 CODEOWNERS = ["@syssi"]
 
+AUTO_LOAD = ["binary_sensor", "button", "sensor", "number"]
 MULTI_CONF = True
 
 CONF_TOTAL_COUNT_ID = "total_count_id"
@@ -14,7 +13,6 @@ CONF_BINARY_SENSOR_ID = "binary_sensor_id"
 CONF_MIN_SAVE_INTERVAL = "min_save_interval"
 
 total_count_ns = cg.esphome_ns.namespace("total_count")
-
 TotalCount = total_count_ns.class_("TotalCount", cg.Component)
 
 CONFIG_SCHEMA = cv.Schema(
