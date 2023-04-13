@@ -16,9 +16,12 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-api:
 ota:
+
 logger:
+  level: DEBUG
+
+api:
 
 total_count:
   binary_sensor_id: barrier
