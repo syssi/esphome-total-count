@@ -34,7 +34,7 @@ total_count:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO32
+    pin: GPIO4
     name: "${name} light barrier"
     id: barrier
     filters:

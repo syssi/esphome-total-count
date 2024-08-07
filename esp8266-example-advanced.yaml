@@ -41,13 +41,13 @@ total_count:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO32
+    pin: GPIO4
     name: "${name} light barrier 0"
     id: barrier0
     filters:
       - delayed_on: 20ms
   - platform: gpio
-    pin: GPIO33
+    pin: GPIO5
     name: "${name} light barrier 1"
     id: barrier1
     filters:
