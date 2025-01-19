@@ -5,7 +5,7 @@ from esphome.const import CONF_ID, CONF_INITIAL_VALUE, CONF_RESTORE, CONF_STEP
 
 CODEOWNERS = ["@syssi"]
 
-AUTO_LOAD = ["binary_sensor", "button", "sensor", "number"]
+AUTO_LOAD = ["binary_sensor", "button", "number", "sensor"]
 MULTI_CONF = True
 
 CONF_TOTAL_COUNT_ID = "total_count_id"
