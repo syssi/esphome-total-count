@@ -2,14 +2,11 @@ import esphome.codegen as cg
 from esphome.components import number
 import esphome.config_validation as cv
 from esphome.const import (
-    CONF_ENTITY_CATEGORY,
-    CONF_ICON,
     CONF_ID,
     CONF_MAX_VALUE,
     CONF_MIN_VALUE,
     CONF_MODE,
     CONF_STEP,
-    CONF_UNIT_OF_MEASUREMENT,
     ENTITY_CATEGORY_CONFIG,
     ICON_EMPTY,
     UNIT_EMPTY,
@@ -30,24 +27,23 @@ TotalCountNumber = total_count_ns.class_(
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
-        cv.Optional(CONF_TOTAL_COUNT): number.NUMBER_SCHEMA.extend(
+        cv.Optional(CONF_TOTAL_COUNT): number.number_schema(
+            TotalCountNumber,
+            icon=ICON_EMPTY,
+            entity_category=ENTITY_CATEGORY_CONFIG,
+            unit_of_measurement=UNIT_EMPTY,
+        )
+        .extend(
             {
-                cv.GenerateID(): cv.declare_id(TotalCountNumber),
-                cv.Optional(CONF_ICON, default=ICON_EMPTY): cv.icon,
                 cv.Optional(CONF_STEP, default=1): cv.float_,
-                cv.Optional(
-                    CONF_UNIT_OF_MEASUREMENT, default=UNIT_EMPTY
-                ): cv.string_strict,
                 cv.Optional(CONF_MODE, default="BOX"): cv.enum(
                     number.NUMBER_MODES, upper=True
                 ),
-                cv.Optional(
-                    CONF_ENTITY_CATEGORY, default=ENTITY_CATEGORY_CONFIG
-                ): cv.entity_category,
                 cv.Optional(CONF_MIN_VALUE, default=0): cv.float_,
                 cv.Optional(CONF_MAX_VALUE, default=4294967295): cv.float_,
             }
-        ).extend(cv.COMPONENT_SCHEMA),
+        )
+        .extend(cv.COMPONENT_SCHEMA),
     }
 )
 
