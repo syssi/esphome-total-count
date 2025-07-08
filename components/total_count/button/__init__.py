@@ -3,7 +3,7 @@ from esphome.components import button
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 
-from .. import CONF_TOTAL_COUNT_ID, TotalCount, total_count_ns
+from .. import CONF_TOTAL_COUNT_ID, TOTAL_COUNT_COMPONENT_SCHEMA, total_count_ns
 
 DEPENDENCIES = ["total_count"]
 
@@ -15,9 +15,8 @@ TotalCountButton = total_count_ns.class_(
     "TotalCountButton", button.Button, cg.Component
 )
 
-CONFIG_SCHEMA = cv.Schema(
+CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
     {
-        cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
         cv.Optional(CONF_RESET_COUNTER): button.button_schema(
             TotalCountButton, icon="mdi:keyboard-tab-reverse"
         ).extend(cv.COMPONENT_SCHEMA),
