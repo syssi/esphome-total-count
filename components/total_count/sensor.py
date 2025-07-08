@@ -3,13 +3,12 @@ from esphome.components import sensor
 import esphome.config_validation as cv
 from esphome.const import STATE_CLASS_TOTAL_INCREASING, UNIT_EMPTY
 
-from . import CONF_TOTAL_COUNT_ID, TotalCount
+from . import CONF_TOTAL_COUNT_ID, TOTAL_COUNT_COMPONENT_SCHEMA
 
 CONF_TOTAL_COUNT = "total_count"
 
-CONFIG_SCHEMA = cv.Schema(
+CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
     {
-        cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
         cv.Required(CONF_TOTAL_COUNT): sensor.sensor_schema(
             unit_of_measurement=UNIT_EMPTY,
             icon="mdi:counter",

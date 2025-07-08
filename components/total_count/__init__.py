@@ -15,6 +15,12 @@ CONF_MIN_SAVE_INTERVAL = "min_save_interval"
 total_count_ns = cg.esphome_ns.namespace("total_count")
 TotalCount = total_count_ns.class_("TotalCount", cg.Component)
 
+TOTAL_COUNT_COMPONENT_SCHEMA = cv.Schema(
+    {
+        cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
+    }
+)
+
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(TotalCount),
