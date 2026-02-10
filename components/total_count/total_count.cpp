@@ -1,5 +1,6 @@
 #include "total_count.h"
 #include "esphome/core/log.h"
+#include "esphome/core/version.h"
 
 namespace esphome {
 namespace total_count {
@@ -10,7 +11,11 @@ void TotalCount::setup() {
   uint32_t initial_value = this->initial_value_;
 
   if (this->restore_ && this->total_count_sensor_ != nullptr) {
+#if ESPHOME_VERSION_CODE >= VERSION_CODE(2026, 2, 0)
+    this->pref_ = this->total_count_sensor_->make_entity_preference<float>();
+#else
     this->pref_ = global_preferences->make_preference<float>(this->total_count_sensor_->get_object_id_hash());
+#endif
     this->pref_.load(&initial_value);
   }
   this->publish_state_and_save(initial_value);
