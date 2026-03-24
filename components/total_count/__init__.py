@@ -21,18 +21,21 @@ TOTAL_COUNT_COMPONENT_SCHEMA = cv.Schema(
     }
 )
 
-CONFIG_SCHEMA = cv.Schema(
-    {
-        cv.GenerateID(): cv.declare_id(TotalCount),
-        cv.Required(CONF_BINARY_SENSOR_ID): cv.use_id(binary_sensor.BinarySensor),
-        cv.Optional(CONF_INITIAL_VALUE, default=0): cv.positive_int,
-        cv.Optional(CONF_STEP, default=1): cv.positive_int,
-        cv.Optional(CONF_RESTORE, default=True): cv.boolean,
-        cv.Optional(
-            CONF_MIN_SAVE_INTERVAL, default="0s"
-        ): cv.positive_time_period_milliseconds,
-    }
-).extend(cv.COMPONENT_SCHEMA)
+CONFIG_SCHEMA = cv.All(
+    cv.require_esphome_version(2024, 6, 0),
+    cv.Schema(
+        {
+            cv.GenerateID(): cv.declare_id(TotalCount),
+            cv.Required(CONF_BINARY_SENSOR_ID): cv.use_id(binary_sensor.BinarySensor),
+            cv.Optional(CONF_INITIAL_VALUE, default=0): cv.positive_int,
+            cv.Optional(CONF_STEP, default=1): cv.positive_int,
+            cv.Optional(CONF_RESTORE, default=True): cv.boolean,
+            cv.Optional(
+                CONF_MIN_SAVE_INTERVAL, default="0s"
+            ): cv.positive_time_period_milliseconds,
+        }
+    ).extend(cv.COMPONENT_SCHEMA),
+)
 
 
 async def to_code(config):
