@@ -34,7 +34,7 @@ CONFIG_SCHEMA = cv.All(
                 CONF_MIN_SAVE_INTERVAL, default="0s"
             ): cv.positive_time_period_milliseconds,
         }
-    ).extend(cv.COMPONENT_SCHEMA),
+    ),
 )
 
 

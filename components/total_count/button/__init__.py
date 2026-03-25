@@ -19,7 +19,7 @@ CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
     {
         cv.Optional(CONF_RESET_COUNTER): button.button_schema(
             TotalCountButton, icon="mdi:keyboard-tab-reverse"
-        ).extend(cv.COMPONENT_SCHEMA),
+        ),
     }
 )
 
