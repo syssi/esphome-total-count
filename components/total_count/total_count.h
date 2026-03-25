@@ -34,9 +34,9 @@ class TotalCount : public Component {
   void publish_state_(number::Number *sensor, float value);
 
   ESPPreferenceObject pref_;
-  binary_sensor::BinarySensor *parent_;
-  sensor::Sensor *total_count_sensor_;
-  number::Number *total_count_number_;
+  binary_sensor::BinarySensor *parent_{nullptr};
+  sensor::Sensor *total_count_sensor_{nullptr};
+  number::Number *total_count_number_{nullptr};
   uint32_t initial_value_{0};
   uint32_t step_{1};
   uint32_t last_update_{0};
