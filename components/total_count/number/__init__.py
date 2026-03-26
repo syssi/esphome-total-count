@@ -8,7 +8,6 @@ from esphome.const import (
     CONF_MODE,
     CONF_STEP,
     ENTITY_CATEGORY_CONFIG,
-    ICON_EMPTY,
     UNIT_EMPTY,
 )
 
@@ -29,7 +28,7 @@ CONFIG_SCHEMA = cv.Schema(
         cv.GenerateID(CONF_TOTAL_COUNT_ID): cv.use_id(TotalCount),
         cv.Optional(CONF_TOTAL_COUNT): number.number_schema(
             TotalCountNumber,
-            icon=ICON_EMPTY,
+            icon=None,
             entity_category=ENTITY_CATEGORY_CONFIG,
             unit_of_measurement=UNIT_EMPTY,
         )
