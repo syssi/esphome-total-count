@@ -4,6 +4,7 @@ substitutions:
 
 esphome:
   name: ${name}
+  friendly_name: ${name}
 
 esp8266:
   board: d1_mini
@@ -34,7 +35,7 @@ total_count:
 binary_sensor:
   - platform: gpio
     pin: GPIO4
-    name: "${name} light barrier"
+    name: "light barrier"
     id: barrier
     filters:
       - delayed_on: 20ms
@@ -42,14 +43,14 @@ binary_sensor:
 sensor:
   - platform: total_count
     total_count:
-      name: "${name} total count"
+      name: "total count"
 
 number:
   - platform: total_count
     total_count:
-      name: "${name} total count"
+      name: "total count"
 
 button:
   - platform: total_count
     reset_counter:
-      name: "${name} reset counter"
+      name: "reset counter"
