@@ -4,8 +4,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/button/button.h"
 
-namespace esphome {
-namespace total_count {
+namespace esphome::total_count {
 
 class TotalCount;
 class TotalCountButton : public button::Button, public Component {
@@ -20,5 +19,4 @@ class TotalCountButton : public button::Button, public Component {
   TotalCount *parent_;
 };
 
-}  // namespace total_count
-}  // namespace esphome
+}  // namespace esphome::total_count

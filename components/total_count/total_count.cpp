@@ -2,8 +2,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/version.h"
 
-namespace esphome {
-namespace total_count {
+namespace esphome::total_count {
 
 static const char *const TAG = "total_count";
 
@@ -73,5 +72,4 @@ void TotalCount::publish_state_(number::Number *sensor, float value) {
   sensor->publish_state(value);
 }
 
-}  // namespace total_count
-}  // namespace esphome
+}  // namespace esphome::total_count
