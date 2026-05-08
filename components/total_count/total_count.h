@@ -7,8 +7,7 @@
 #include "esphome/core/hal.h"
 #include "esphome/core/preferences.h"
 
-namespace esphome {
-namespace total_count {
+namespace esphome::total_count {
 
 class TotalCount : public Component {
  public:
@@ -46,5 +45,4 @@ class TotalCount : public Component {
   bool restore_;
 };
 
-}  // namespace total_count
-}  // namespace esphome
+}  // namespace esphome::total_count
