@@ -19,7 +19,10 @@ SENSOR_DEFS = {
 }
 
 CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
-    {cv.Required(key): sensor.sensor_schema(**kwargs) for key, kwargs in SENSOR_DEFS.items()}
+    {
+        cv.Required(key): sensor.sensor_schema(**kwargs)
+        for key, kwargs in SENSOR_DEFS.items()
+    }
 )
 
 
