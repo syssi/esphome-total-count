@@ -9,22 +9,23 @@ CODEOWNERS = ["@syssi"]
 
 CONF_TOTAL_COUNT = "total_count"
 
+SENSOR_DEFS = {
+    CONF_TOTAL_COUNT: {
+        "unit_of_measurement": UNIT_EMPTY,
+        "icon": "mdi:counter",
+        "accuracy_decimals": 0,
+        "state_class": STATE_CLASS_TOTAL_INCREASING,
+    },
+}
+
 CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
-    {
-        cv.Required(CONF_TOTAL_COUNT): sensor.sensor_schema(
-            unit_of_measurement=UNIT_EMPTY,
-            icon="mdi:counter",
-            accuracy_decimals=0,
-            state_class=STATE_CLASS_TOTAL_INCREASING,
-        ),
-    }
+    {cv.Required(key): sensor.sensor_schema(**kwargs) for key, kwargs in SENSOR_DEFS.items()}
 )
 
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_TOTAL_COUNT_ID])
-    for key in [CONF_TOTAL_COUNT]:
+    for key in SENSOR_DEFS:
         if key in config:
-            conf = config[key]
-            sens = await sensor.new_sensor(conf)
+            sens = await sensor.new_sensor(config[key])
             cg.add(getattr(hub, f"set_{key}_sensor")(sens))

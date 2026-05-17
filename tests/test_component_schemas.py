@@ -15,6 +15,14 @@ class TestHubConstants:
         assert hub.CONF_BINARY_SENSOR_ID == "binary_sensor_id"
 
 
-class TestSensorConstants:
-    def test_conf_total_count_defined(self):
-        assert sensor.CONF_TOTAL_COUNT == "total_count"
+class TestSensorDefs:
+    def test_sensor_defs_completeness(self):
+        assert sensor.CONF_TOTAL_COUNT in sensor.SENSOR_DEFS
+        assert len(sensor.SENSOR_DEFS) == 1
+
+    def test_sensor_defs_keys_match_schema(self):
+        assert set(sensor.SENSOR_DEFS.keys()) == {sensor.CONF_TOTAL_COUNT}
+
+    def test_sensor_keys_are_strings(self):
+        for key in sensor.SENSOR_DEFS:
+            assert isinstance(key, str)
