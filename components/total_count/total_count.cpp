@@ -2,9 +2,14 @@
 #include "esphome/core/log.h"
 #include "esphome/core/version.h"
 
+// Fallback for ESPHome < 2026.10.0
+#ifndef ESPHOME_LOG_TAG
+#define ESPHOME_LOG_TAG(name, tag) static const char *const name = tag
+#endif
+
 namespace esphome::total_count {
 
-static const char *const TAG = "total_count";
+ESPHOME_LOG_TAG(TAG, "total_count");
 
 void TotalCount::setup() {
   uint32_t initial_value = this->initial_value_;
