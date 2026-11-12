@@ -12,12 +12,12 @@ from esphome.const import (
 )
 
 from .. import CONF_TOTAL_COUNT_ID, TotalCount, total_count_ns
+from ..const import CONF_TOTAL_COUNT
 
 DEPENDENCIES = ["total_count"]
 
 CODEOWNERS = ["@syssi"]
 
-CONF_TOTAL_COUNT = "total_count"
 
 TotalCountNumber = total_count_ns.class_(
     "TotalCountNumber", number.Number, cg.Component
