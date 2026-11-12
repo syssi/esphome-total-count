@@ -4,10 +4,10 @@ import esphome.config_validation as cv
 from esphome.const import STATE_CLASS_TOTAL_INCREASING, UNIT_EMPTY
 
 from . import CONF_TOTAL_COUNT_ID, TOTAL_COUNT_COMPONENT_SCHEMA
+from .const import CONF_TOTAL_COUNT
 
 CODEOWNERS = ["@syssi"]
 
-CONF_TOTAL_COUNT = "total_count"
 
 SENSOR_DEFS = {
     CONF_TOTAL_COUNT: {
