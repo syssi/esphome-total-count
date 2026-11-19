@@ -10,9 +10,7 @@ CODEOWNERS = ["@syssi"]
 
 CONF_RESET_COUNTER = "reset_counter"
 
-TotalCountButton = total_count_ns.class_(
-    "TotalCountButton", button.Button, cg.Component
-)
+TotalCountButton = total_count_ns.class_("TotalCountButton", button.Button)
 
 CONFIG_SCHEMA = TOTAL_COUNT_COMPONENT_SCHEMA.extend(
     {
@@ -29,5 +27,4 @@ async def to_code(config):
         if key in config:
             conf = config[key]
             var = await button.new_button(conf)
-            await cg.register_component(var, conf)
             cg.add(var.set_parent(hub))
